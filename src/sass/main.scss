@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat");
-$primary-color: #6074F9;
+$primary-color: #007BFF;
 $secondary-color: #F96060;
 
 *{
@@ -49,10 +49,33 @@ header{
   small{
     font-size: 1rem;
   }
-  
+
   p{
     padding-top: 1rem;
     font-size:1.5rem;
 
+  }
+}
+
+// AddToDo style component
+.add-to-do{
+  padding-top: 2rem;
+
+  input[type='text']{
+    padding: 0.5rem 0.8rem;
+    border-radius: 5px;
+    border: 1px solid $primary-color;
+    background:lighten($primary-color, 45);
+    font-size: 1.3rem;
+  }
+  input[type='submit']{
+    padding: 0.8rem 0.8rem;
+    background: $primary-color;
+    border: 1px solid $primary-color;
+    font-size: 1rem;
+    border-radius: 5px;
+
+    margin-top: 1.2rem;
+    color: #fff;
   }
 }
