@@ -14,6 +14,10 @@ a{
   font-size: 1.3rem;
 }
 
+body{
+  background: #FDFDFD;
+}
+
 .container{
   width: 80%;
   margin: auto;
@@ -77,5 +81,39 @@ header{
 
     margin-top: 1.2rem;
     color: #fff;
+  }
+}
+
+// ToDoItem component
+.to-do-item{
+  background: #FFFFFF;
+  box-shadow: 5px 5px 9px #E0E0E080;
+  border-radius: 3px;
+  opacity: 1;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  margin-top: 2rem;
+  padding: 1rem;
+  position: relative;
+  font-size: 1.3rem;
+  min-height: 100px;
+  
+
+  &::after{
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 21px;
+    right: 0;
+    background: $primary-color;
+  }
+
+  .title{
+    color: #313131;
+  }
+
+  .time{
+    color: #9B9B9B;
   }
 }
