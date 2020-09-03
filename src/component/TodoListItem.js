@@ -14,9 +14,9 @@ class ToDoListItem extends Component{
             {list.map((todo)=>{
                 return (
                     <ToDoItem 
-                        title={todo.title} 
+                        key={todo.id}
+                        userTodo={todo.userTodo} 
                         isCompleted={todo.isCompleted}
-                        time={todo.time}
                     />
                 )
             })}

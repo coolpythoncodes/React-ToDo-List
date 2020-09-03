@@ -7,37 +7,44 @@ import './sass/main.scss';
 import AddToDo from './component/AddToDo';
 import TodoListItem from './component/TodoListItem';
 
-const list = [
-  {
-    id:1,
-    title: 'Go fishing with Stephen',
-    time: '9:00 am',
-    isCompleted: false,
-  },
-  {
-    id:2,
-    title: 'Meet according with design team',
-    time: '10:00 am',
-    isCompleted: true,
-
-  }
-]
 
 class App extends Component{
-  // constructor(props){
-  //   super(props);
-  //   this.state = {list}
-  // }
-  state= {list:list};
-  onChange = (e)=>{
-    console.log(e.target.value)
-}
+  constructor(props){
+    super(props);
+
+    this.state= {
+      value: '',
+      list: [],
+    };
+
+    this.handleChange= this.handleChange.bind(this);
+    this.handleSubmit= this.handleSubmit.bind(this);
+  }
+
+  handleChange(e) {
+    this.setState({value:e.target.value})
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    const newTask = {
+      id: Date.now(),
+      userTodo: this.state.value,
+      isCompleted: false
+    }
+    
+    this.setState({
+      list: [newTask, ...this.state.list],
+      value: '' // Clear input field
+    })  
+  }
+
   render(){
     return(
       <div>
         <Header/>
         <Info/>
-        <AddToDo onChange={this.onChange}/>
+        <AddToDo onChange={this.handleChange} value={this.state.value} onSubmit={this.handleSubmit}/>
         <TodoListItem list={this.state.list}/>
       </div>
     )

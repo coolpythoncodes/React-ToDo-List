@@ -4,18 +4,16 @@ import React, { Component } from 'react';
 import '../sass/main.scss';
 
 class ToDoItem extends Component{
-    // constructor(props){
-    //     super(props);
-    // }
+
   render(){
-    const {title, time, isCompleted} = this.props;
+    const {userTodo, isCompleted} = this.props;
     return(
         
       <div className='container to-do-item'>
             <input type="checkbox" />
-            <div>
-                <p className='title'>{title}</p>
-                <p className='time'>{time}</p>
+            <div >
+                <p className='title'>{userTodo}</p>
+                <p className='time'>10:00 am</p>
             </div>
       </div>
     )
