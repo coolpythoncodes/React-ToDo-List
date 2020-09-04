@@ -8,7 +8,7 @@ class ToDoListItem extends Component{
     //     super(props);
     // }
   render(){
-    const {list} = this.props;
+    const {list, checked, onChange} = this.props;
     return(
         <div>
             {list.map((todo)=>{
@@ -17,11 +17,12 @@ class ToDoListItem extends Component{
                         key={todo.id}
                         userTodo={todo.userTodo} 
                         isCompleted={todo.isCompleted}
+                        checked={checked}
+                        onChange={onChange}
                     />
                 )
             })}
-            {/* <ToDoItem />
-            <ToDoItem /> */}
+
         </div>
     )
   }

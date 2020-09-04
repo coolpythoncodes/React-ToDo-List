@@ -78,14 +78,13 @@ header{
     border: 1px solid $primary-color;
     font-size: 1rem;
     border-radius: 5px;
-
     margin-top: 1.2rem;
     color: #fff;
   }
 }
 
 // ToDoItem component
-.to-do-item{
+@mixin to-do-item($color){
   background: #FFFFFF;
   box-shadow: 5px 5px 9px #E0E0E080;
   border-radius: 3px;
@@ -98,15 +97,17 @@ header{
   position: relative;
   font-size: 1.3rem;
   min-height: 100px;
-  
+  -moz-user-select: none;
+  user-select: none;
+  -webkit-user-select: none;
 
   &::after{
     content: '';
     position: absolute;
     width: 4px;
-    height: 21px;
+    height: 30px;
     right: 0;
-    background: $primary-color;
+    background: $color;
   }
 
   .title{
@@ -116,4 +117,21 @@ header{
   .time{
     color: #9B9B9B;
   }
+
+  input[type='checkbox']{
+    margin-right: 1rem;
+  }
+}
+
+.user-todo{
+  @include to-do-item($primary-color);
+}
+
+.not-completed-todo{
+  @include to-do-item($primary-color);
+}
+
+.completed-todo{
+  @include to-do-item($secondary-color);
+  text-decoration: line-through;
 }
