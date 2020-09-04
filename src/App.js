@@ -16,7 +16,6 @@ class App extends Component{
       value: '',
       list: [],
       isCompleted: false,
-      checked:false,
     };
 
     this.handleChange= this.handleChange.bind(this);
@@ -34,7 +33,7 @@ class App extends Component{
     const newTask = {
       id: Date.now(),
       userTodo: this.state.value,
-      isCompleted: false,
+      // isCompleted: false,
     }
     
     this.setState({
@@ -45,16 +44,12 @@ class App extends Component{
   }
 
   // Handles checkbox
-  handleInputChange(e) {
-    this.setState({
-      checked: !this.state.checked,
+  handleInputChange(id) {
+    this.setState({list: this.state.list.map(item => {
+      if (item.id === id) item.isCompleted = !item.isCompleted;
+      return item;
+    })})
 
-    })
-    if (!this.state.checked) console.log('check mate')
-    else{
-      console.log('not checked')
-    }
-    
   }
 
   render(){
@@ -63,7 +58,7 @@ class App extends Component{
         <Header/>
         <Info/>
         <AddToDo onChange={this.handleChange} value={this.state.value} onSubmit={this.handleSubmit}/>
-        <TodoListItem checked={this.state.checked} onChange={this.handleInputChange} list={this.state.list}/>
+        <TodoListItem  onChange={this.handleInputChange} list={this.state.list}/>
       </div>
     )
   }

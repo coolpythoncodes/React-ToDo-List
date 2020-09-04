@@ -4,11 +4,9 @@ import ToDoItem from './ToDoItem';
 import '../sass/main.scss';
 
 class ToDoListItem extends Component{
-    // constructor(props){
-    //     super(props);
-    // }
+
   render(){
-    const {list, checked, onChange} = this.props;
+    const {list, onChange} = this.props;
     return(
         <div>
             {list.map((todo)=>{
@@ -17,8 +15,8 @@ class ToDoListItem extends Component{
                         key={todo.id}
                         userTodo={todo.userTodo} 
                         isCompleted={todo.isCompleted}
-                        checked={checked}
                         onChange={onChange}
+                        id={todo.id}
                     />
                 )
             })}

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import PropTypes from 'prop-types';
 
 
 import '../sass/main.scss';
@@ -7,12 +7,12 @@ import '../sass/main.scss';
 class ToDoItem extends Component{
 
   render(){
-    const {userTodo, isCompleted, onChange, checked} = this.props;
-    const checkStyle =  checked ? 'completed-todo' : 'not-completed-todo';
+    const {userTodo, isCompleted, onChange,id} = this.props;
+    const checkStyle =  isCompleted ? 'completed-todo' : 'not-completed-todo';
     return(
         
       <div className={`container  ${checkStyle}`}>
-            <input type="checkbox" onChange={onChange} checked={checked} />
+            <input type="checkbox" onChange={onChange.bind(this, id)} />
             <div >
                 <p className='title'>{userTodo}</p>
                 {/* <p className='time'>10:00 am</p> */}
@@ -30,5 +30,9 @@ class ToDoItem extends Component{
   }
 }
 
+ToDoItem.propTypes = {
+    isCompleted: PropTypes.bool,
+    userTodo: PropTypes.string,
+}
 
 export default ToDoItem;
