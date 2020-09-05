@@ -16,6 +16,7 @@ a{
 
 body{
   background: #FDFDFD;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .container{
@@ -23,13 +24,13 @@ body{
   margin: auto;
 }
 
+
 // Header Style component
 header{
   background: $primary-color;
   color: #fff;
   width: 100%;
   height: 15vh;
-  font-family: 'Montserrat', sans-serif;
 
 
   nav{
@@ -43,28 +44,30 @@ header{
 
 // Info style component
 .info{
-  margin-top: 3rem;
+  margin-top: 2rem;
   line-height: 1.4;
 
   h1{
     font-size:2rem;
-    padding-bottom: 1rem;
+    padding-bottom: 0.5rem;
   }
 
   small{
-    font-size: 1rem;
+    font-size: 0.8rem;
   }
 
   p{
     padding-top: 1rem;
-    font-size:1.5rem;
-
+    font-size:1.2rem;
   }
 }
 
 // AddToDo style component
 .add-to-do{
-  padding-top: 2rem;
+  padding-top: 0.3rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 
   input[type='text']{
     padding: 0.5rem 0.8rem;
@@ -72,6 +75,7 @@ header{
     border: 1px solid $primary-color;
     background:lighten($primary-color, 45);
     font-size: 1.3rem;
+    display: block;
   }
   input[type='submit']{
     padding: 0.8rem 0.8rem;
@@ -81,6 +85,7 @@ header{
     border-radius: 5px;
     margin-top: 1.2rem;
     color: #fff;
+    display: block;
   }
 }
 
@@ -101,6 +106,7 @@ header{
   -moz-user-select: none;
   user-select: none;
   -webkit-user-select: none;
+  margin-bottom: 5rem;
 
   &::after{
     content: '';
@@ -142,3 +148,18 @@ header{
   @include to-do-item($secondary-color);
   text-decoration: line-through;
 }
+
+// Footer
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  padding: 1rem;
+  background: $primary-color;
+  text-align: center;
+  a{
+    font-size: 1rem;
+  }
+}
+

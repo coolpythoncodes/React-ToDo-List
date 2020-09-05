@@ -2,11 +2,18 @@ import React, { Component } from 'react';
 
 import Header from './component/Header';
 import Info from './component/Info';
-
-import './sass/main.scss';
 import AddToDo from './component/AddToDo';
 import TodoListItem from './component/TodoListItem';
+import Footer from './component/Footer'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
+
+import './sass/main.scss';
 
 class App extends Component{
   constructor(props){
@@ -15,14 +22,14 @@ class App extends Component{
     this.state= {
       value: '',
       list: [],
+      show: true,
     };
 
     this.handleChange= this.handleChange.bind(this);
     this.handleSubmit= this.handleSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.deleteTask = this.deleteTask.bind(this);
-    // this.handleClick = this.handleClick.bind(this);
-    // this.deleteItem = this.deleteItem.bind(this);
+
   }
 
   handleChange(e) {
@@ -35,14 +42,14 @@ class App extends Component{
     const newTask = {
       id: Date.now(),
       userTodo: this.state.value,
-      // isCompleted: false,
     }
     
     this.setState({
       list: [newTask, ...this.state.list],
-      value: '' // Clear input field
+      value: '', // Clear input field
+      show: true, // Success message
     })  
-    console.log(this.state.list)
+
   }
 
   // Handles checkbox
@@ -54,6 +61,7 @@ class App extends Component{
 
   }
 
+  // Delete a task
   deleteTask(id){
     this.setState({list: this.state.list.filter(item => item.id !== id )})
     console.log(this.state.list)
@@ -61,12 +69,15 @@ class App extends Component{
 
   render(){
     return(
-      <div>
-        <Header/>
-        <Info/>
-        <AddToDo onChange={this.handleChange} value={this.state.value} onSubmit={this.handleSubmit}/>
-        <TodoListItem deleteTask={this.deleteTask}   onChange={this.handleInputChange} list={this.state.list} />
-      </div>
+      <Router>
+        <div>
+          <Header />
+          <Info />
+          <AddToDo onChange={this.handleChange} value={this.state.value} onSubmit={this.handleSubmit} />
+          <TodoListItem deleteTask={this.deleteTask} onChange={this.handleInputChange} list={this.state.list} />
+          <Footer/>
+        </div>
+      </Router>
     )
   }
 }
