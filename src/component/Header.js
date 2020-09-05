@@ -4,7 +4,7 @@ import '../sass/main.scss';
 
 const Header = () => {
     return (
-      <header className="">
+      <header>
         <nav className="container">
           <h1>To-Do List</h1>
 

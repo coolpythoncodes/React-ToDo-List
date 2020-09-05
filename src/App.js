@@ -4,14 +4,6 @@ import Header from './component/Header';
 import Info from './component/Info';
 import AddToDo from './component/AddToDo';
 import TodoListItem from './component/TodoListItem';
-import Footer from './component/Footer'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
-
 
 import './sass/main.scss';
 
@@ -69,15 +61,14 @@ class App extends Component{
 
   render(){
     return(
-      <Router>
+
         <div>
           <Header />
           <Info />
           <AddToDo onChange={this.handleChange} value={this.state.value} onSubmit={this.handleSubmit} />
           <TodoListItem deleteTask={this.deleteTask} onChange={this.handleInputChange} list={this.state.list} />
-          <Footer/>
         </div>
-      </Router>
+
     )
   }
 }

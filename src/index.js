@@ -1,9 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import './sass/index.scss';
 import './sass/main.scss';
 import App from './App';
-import Footer from './component/Footer'
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(

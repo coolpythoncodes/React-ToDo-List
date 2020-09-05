@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
@@ -18,7 +17,6 @@ class ToDoItem extends Component{
             <input type="checkbox" onChange={onChange.bind(this, id)} />
             <div >
                 <p className='title'>{userTodo}</p>
-                {/* <p className='time'>10:00 am</p> */}
             </div>
 
             {/* Delete button */}
@@ -26,21 +24,9 @@ class ToDoItem extends Component{
             
 
       </div>
-
-        // <div className={`container ${toDoStyle}`}>
-        //     <input type="checkbox" />
-        //     <div >
-        //         <p className='title'>Meeting with Boss</p>
-        //         <p className='time'>10:00 am</p>
-        //     </div>
-        // </div>
     )
   }
 }
 
-ToDoItem.propTypes = {
-    isCompleted: PropTypes.bool,
-    userTodo: PropTypes.string,
-}
 
 export default ToDoItem;
