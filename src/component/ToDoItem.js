@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+
 
 import '../sass/main.scss';
 
 class ToDoItem extends Component{
 
   render(){
-    const {userTodo, isCompleted, onChange,id} = this.props;
+    const {userTodo, isCompleted, onChange, id, deleteTask} = this.props;
     const checkStyle =  isCompleted ? 'completed-todo' : 'not-completed-todo';
     return(
         
@@ -17,6 +20,11 @@ class ToDoItem extends Component{
                 <p className='title'>{userTodo}</p>
                 {/* <p className='time'>10:00 am</p> */}
             </div>
+
+            {/* Delete button */}
+            <button onClick={deleteTask.bind(this, id)}><FontAwesomeIcon className='remove-icon' icon={faTrashAlt} /></button>
+            
+
       </div>
 
         // <div className={`container ${toDoStyle}`}>

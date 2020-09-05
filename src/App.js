@@ -15,12 +15,14 @@ class App extends Component{
     this.state= {
       value: '',
       list: [],
-      isCompleted: false,
     };
 
     this.handleChange= this.handleChange.bind(this);
     this.handleSubmit= this.handleSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.deleteTask = this.deleteTask.bind(this);
+    // this.handleClick = this.handleClick.bind(this);
+    // this.deleteItem = this.deleteItem.bind(this);
   }
 
   handleChange(e) {
@@ -52,13 +54,18 @@ class App extends Component{
 
   }
 
+  deleteTask(id){
+    this.setState({list: this.state.list.filter(item => item.id !== id )})
+    console.log(this.state.list)
+  }
+
   render(){
     return(
       <div>
         <Header/>
         <Info/>
         <AddToDo onChange={this.handleChange} value={this.state.value} onSubmit={this.handleSubmit}/>
-        <TodoListItem  onChange={this.handleInputChange} list={this.state.list}/>
+        <TodoListItem deleteTask={this.deleteTask}   onChange={this.handleInputChange} list={this.state.list} />
       </div>
     )
   }

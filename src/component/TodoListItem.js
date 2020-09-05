@@ -6,7 +6,7 @@ import '../sass/main.scss';
 class ToDoListItem extends Component{
 
   render(){
-    const {list, onChange} = this.props;
+    const {list, onChange, deleteTask} = this.props;
     return(
         <div>
             {list.map((todo)=>{
@@ -17,6 +17,7 @@ class ToDoListItem extends Component{
                         isCompleted={todo.isCompleted}
                         onChange={onChange}
                         id={todo.id}
+                        deleteTask={deleteTask}
                     />
                 )
             })}
