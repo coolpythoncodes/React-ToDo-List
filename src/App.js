@@ -7,6 +7,7 @@ import TodoListItem from './component/TodoListItem';
 
 import './sass/main.scss';
 
+
 class App extends Component{
   constructor(props){
     super(props);
@@ -21,8 +22,14 @@ class App extends Component{
     this.handleSubmit= this.handleSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.deleteTask = this.deleteTask.bind(this);
-
   }
+
+  componentDidMount() {
+    const list = window.localStorage.getItem('userTodo') ? JSON.parse(localStorage.getItem('userTodo')) : [];
+    this.setState({
+        list: list,
+    })
+}
 
   handleChange(e) {
     this.setState({value:e.target.value})
@@ -34,30 +41,43 @@ class App extends Component{
     const newTask = {
       id: Date.now(),
       userTodo: this.state.value,
+      isCompleted: false,
     }
     
-    this.setState({
-      list: [newTask, ...this.state.list],
-      value: '', // Clear input field
-      show: true, // Success message
-    })  
+    // Validate form so user doesn't add an empty to do
+    if (this.state.value.length > 0) {
+      this.setState({
+        list: [newTask, ...this.state.list],
+        value: '', // Clear input field
+        show: true, // Success message
+      }, ()=>{
+        window.localStorage.setItem('userTodo', JSON.stringify(this.state.list));
+      })
+    }
 
   }
-
+  
+  
   // Handles checkbox
   handleInputChange(id) {
     this.setState({list: this.state.list.map(item => {
       if (item.id === id) item.isCompleted = !item.isCompleted;
       return item;
-    })})
+    })}, ()=>{
+      window.localStorage.setItem('userTodo', JSON.stringify(this.state.list));
+    })
 
   }
 
   // Delete a task
   deleteTask(id){
-    this.setState({list: this.state.list.filter(item => item.id !== id )})
+    this.setState({list: this.state.list.filter(item => item.id !== id )},()=>{
+      window.localStorage.setItem('userTodo', JSON.stringify(this.state.list))
+    })
     console.log(this.state.list)
   }
+
+  
 
   render(){
     return(
