@@ -36,11 +36,14 @@ class App extends Component{
       userTodo: this.state.value,
     }
     
-    this.setState({
-      list: [newTask, ...this.state.list],
-      value: '', // Clear input field
-      show: true, // Success message
-    })  
+    // Validate form so user doesn't add an empty to do
+    if (this.state.value.length > 0) {
+      this.setState({
+        list: [newTask, ...this.state.list],
+        value: '', // Clear input field
+        show: true, // Success message
+      })
+    }
 
   }
 
