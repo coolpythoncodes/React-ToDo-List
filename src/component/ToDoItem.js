@@ -14,7 +14,7 @@ class ToDoItem extends Component{
     return(
         
       <div className={`container  ${checkStyle}`}>
-            <input type="checkbox" onChange={onChange.bind(this, id)} />
+            <input type="checkbox" onChange={onChange.bind(this, id)} defaultChecked={isCompleted}/>
             <div >
                 <p className='title'>{userTodo}</p>
             </div>
