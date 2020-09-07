@@ -18,6 +18,7 @@ class ToDoListItem extends Component{
                         onChange={onChange}
                         id={todo.id}
                         deleteTask={deleteTask}
+                        
                     />
                 )
             })}

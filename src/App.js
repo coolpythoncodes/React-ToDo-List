@@ -26,9 +26,7 @@ class App extends Component{
 
   componentDidMount() {
     const list = window.localStorage.getItem('userTodo') ? JSON.parse(localStorage.getItem('userTodo')) : [];
-    this.setState({
-        list: list,
-    })
+    this.setState({ list })
 }
 
   handleChange(e) {
@@ -42,6 +40,7 @@ class App extends Component{
       id: Date.now(),
       userTodo: this.state.value,
       isCompleted: false,
+      checked: false,
     }
     
     // Validate form so user doesn't add an empty to do
@@ -57,12 +56,13 @@ class App extends Component{
 
   }
   
-  
   // Handles checkbox
   handleInputChange(id) {
     this.setState({list: this.state.list.map(item => {
-      if (item.id === id) item.isCompleted = !item.isCompleted;
-      return item;
+      if (item.id === id) {
+        item.isCompleted = !item.isCompleted; 
+        // item.checked = !this.state.checked;
+    }return item
     })}, ()=>{
       window.localStorage.setItem('userTodo', JSON.stringify(this.state.list));
     })
