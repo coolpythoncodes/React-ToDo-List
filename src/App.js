@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 
+import AddToDo from './component/AddToDo';
 import Header from './component/Header';
 import Info from './component/Info';
-import AddToDo from './component/AddToDo';
+import AlertRemove from './component/AlertRemove'
 import TodoListItem from './component/TodoListItem';
 
 import './sass/main.scss';
@@ -15,7 +16,7 @@ class App extends Component{
     this.state= {
       value: '',
       list: [],
-      show: true,
+      showAlertMessage: false,
     };
 
     this.handleChange= this.handleChange.bind(this);
@@ -48,7 +49,6 @@ class App extends Component{
       this.setState({
         list: [newTask, ...this.state.list],
         value: '', // Clear input field
-        show: true, // Success message
       }, ()=>{
         window.localStorage.setItem('userTodo', JSON.stringify(this.state.list));
       })
@@ -67,14 +67,16 @@ class App extends Component{
       window.localStorage.setItem('userTodo', JSON.stringify(this.state.list));
     })
 
+    // this.setState({showAlertMessage: !showAlertMessage,})
   }
 
   // Delete a task
   deleteTask(id){
-    this.setState({list: this.state.list.filter(item => item.id !== id )},()=>{
+    this.setState({
+      showAlertMessage: !this.state.showAlertMessage,
+      list: this.state.list.filter(item => item.id !== id )},()=>{
       window.localStorage.setItem('userTodo', JSON.stringify(this.state.list))
     })
-    console.log(this.state.list)
   }
 
   
@@ -84,6 +86,7 @@ class App extends Component{
 
         <div>
           <Header />
+          {this.state.showAlertMessage || <AlertRemove/>}
           <Info />
           <AddToDo onChange={this.handleChange} value={this.state.value} onSubmit={this.handleSubmit} />
           <TodoListItem deleteTask={this.deleteTask} onChange={this.handleInputChange} list={this.state.list} />
