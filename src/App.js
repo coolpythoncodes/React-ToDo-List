@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 
+import AddToDo from './component/AddToDo';
 import Header from './component/Header';
 import Info from './component/Info';
-import AddToDo from './component/AddToDo';
+import AlertRemove from './component/AlertRemove'
 import TodoListItem from './component/TodoListItem';
+import About from './component/About'
+
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 import './sass/main.scss';
 
@@ -15,7 +19,7 @@ class App extends Component{
     this.state= {
       value: '',
       list: [],
-      show: true,
+      showAlertMessage: false,
     };
 
     this.handleChange= this.handleChange.bind(this);
@@ -44,11 +48,10 @@ class App extends Component{
     }
     
     // Validate form so user doesn't add an empty to do
-    if (this.state.value.length > 0) {
+    if (this.state.value.trim().length > 0) {
       this.setState({
         list: [newTask, ...this.state.list],
         value: '', // Clear input field
-        show: true, // Success message
       }, ()=>{
         window.localStorage.setItem('userTodo', JSON.stringify(this.state.list));
       })
@@ -67,14 +70,16 @@ class App extends Component{
       window.localStorage.setItem('userTodo', JSON.stringify(this.state.list));
     })
 
+    // this.setState({showAlertMessage: !showAlertMessage,})
   }
 
   // Delete a task
   deleteTask(id){
-    this.setState({list: this.state.list.filter(item => item.id !== id )},()=>{
+    this.setState({
+      showAlertMessage: !this.state.showAlertMessage,
+      list: this.state.list.filter(item => item.id !== id )},()=>{
       window.localStorage.setItem('userTodo', JSON.stringify(this.state.list))
     })
-    console.log(this.state.list)
   }
 
   
@@ -83,10 +88,32 @@ class App extends Component{
     return(
 
         <div>
-          <Header />
-          <Info />
-          <AddToDo onChange={this.handleChange} value={this.state.value} onSubmit={this.handleSubmit} />
-          <TodoListItem deleteTask={this.deleteTask} onChange={this.handleInputChange} list={this.state.list} />
+          <Router>
+            <Switch>
+            <Route exact path='/' render={
+              ()=> 
+                <React.Fragment>
+                  <Header />
+                  {this.state.showAlertMessage && <AlertRemove />}
+                  <Info />
+                  <AddToDo onChange={this.handleChange} value={this.state.value} onSubmit={this.handleSubmit} />
+                  <TodoListItem deleteTask={this.deleteTask} onChange={this.handleInputChange} list={this.state.list} />
+
+                </React.Fragment>  
+            }/>
+            <Route path='/about' component={About}/>
+            </Switch>
+
+        {/* //   <Switch>
+        //    <Route path="/">
+        //     <App/>
+        //   </Route>
+        //   <Route path="/about">
+        //     <About/>
+        //   </Route>
+
+        // </Switch> */}
+          </Router>
         </div>
 
     )
