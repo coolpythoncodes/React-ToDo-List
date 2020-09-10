@@ -1,0 +1,9 @@
+[[redirects]]
+  from = "/"
+  to = "https://rapture-todo.netlify.app/"
+  status = 200
+
+[[redirects]]
+  from = "/about"
+  to = "https://rapture-todo.netlify.app/about"
+  status = 200
