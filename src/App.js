@@ -5,6 +5,9 @@ import Header from './component/Header';
 import Info from './component/Info';
 import AlertRemove from './component/AlertRemove'
 import TodoListItem from './component/TodoListItem';
+import About from './component/About'
+
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 import './sass/main.scss';
 
@@ -85,11 +88,32 @@ class App extends Component{
     return(
 
         <div>
-          <Header />
-          {this.state.showAlertMessage || <AlertRemove/>}
-          <Info />
-          <AddToDo onChange={this.handleChange} value={this.state.value} onSubmit={this.handleSubmit} />
-          <TodoListItem deleteTask={this.deleteTask} onChange={this.handleInputChange} list={this.state.list} />
+          <Router>
+            <Switch>
+            <Route exact path='/' render={
+              ()=> 
+                <React.Fragment>
+                  <Header />
+                  {this.state.showAlertMessage && <AlertRemove />}
+                  <Info />
+                  <AddToDo onChange={this.handleChange} value={this.state.value} onSubmit={this.handleSubmit} />
+                  <TodoListItem deleteTask={this.deleteTask} onChange={this.handleInputChange} list={this.state.list} />
+
+                </React.Fragment>  
+            }/>
+            <Route path='/about' component={About}/>
+            </Switch>
+
+        {/* //   <Switch>
+        //    <Route path="/">
+        //     <App/>
+        //   </Route>
+        //   <Route path="/about">
+        //     <About/>
+        //   </Route>
+
+        // </Switch> */}
+          </Router>
         </div>
 
     )
