@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import AddToDo from './component/AddToDo';
 import Header from './component/Header';
 import Info from './component/Info';
-import AlertRemove from './component/AlertRemove'
 import TodoListItem from './component/TodoListItem';
 import About from './component/About'
 
@@ -94,7 +93,6 @@ class App extends Component{
               ()=> 
                 <React.Fragment>
                   <Header />
-                  {this.state.showAlertMessage && <AlertRemove />}
                   <Info />
                   <AddToDo onChange={this.handleChange} value={this.state.value} onSubmit={this.handleSubmit} />
                   <TodoListItem deleteTask={this.deleteTask} onChange={this.handleInputChange} list={this.state.list} />
@@ -103,16 +101,6 @@ class App extends Component{
             }/>
             <Route path='/about' component={About}/>
             </Switch>
-
-        {/* //   <Switch>
-        //    <Route path="/">
-        //     <App/>
-        //   </Route>
-        //   <Route path="/about">
-        //     <About/>
-        //   </Route>
-
-        // </Switch> */}
           </Router>
         </div>
 
