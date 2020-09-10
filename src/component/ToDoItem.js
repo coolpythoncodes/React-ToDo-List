@@ -11,20 +11,26 @@ class ToDoItem extends Component{
   render(){
     const {userTodo, isCompleted, onChange, id, deleteTask} = this.props;
     const checkStyle =  isCompleted ? 'completed-todo' : 'not-completed-todo';
-    return(
-        
+    return (
       <div className={`container  ${checkStyle}`}>
-            <input type="checkbox" onChange={onChange.bind(this, id)} defaultChecked={isCompleted}/>
-            <div >
-                <p className='title'>{userTodo}</p>
-            </div>
+        <div className='task'>
+          <input
+            type="checkbox"
+            onChange={onChange.bind(this, id)}
+            defaultChecked={isCompleted}
+          />
+          <p className="title">{userTodo}</p>
+        </div>
 
-            {/* Delete button */}
-            <button onClick={deleteTask.bind(this, id)}><FontAwesomeIcon className='remove-icon' icon={faTrashAlt} /></button>
-            
+        {/* Delete button */}
 
+        <FontAwesomeIcon
+          onClick={deleteTask.bind(this, id)}
+          className="remove-icon"
+          icon={faTrashAlt}
+        />
       </div>
-    )
+    );
   }
 }
 
