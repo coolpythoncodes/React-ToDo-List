@@ -13,7 +13,7 @@ const About = () => {
           </div>
           <div className="bio-text">
             <p>This project was built by Rapture Chijioke Godson</p>
-            <p>You can find more from him via <a target='__blank' href="https://twitter.com/coolpythoncodes">Twitter</a> or <a target='__blank' href="Instagram">Instagram</a></p>
+            <p>You can find more from him via <a target='__blank' href="https://twitter.com/coolpythoncodes">Twitter</a> or <a target='__blank' href="https://instagram.com/coolpythoncodes/">Instagram</a></p>
             <p><a target='__blank' href="https://github.com/coolpythoncodes/React-ToDo-List">Source Code</a></p>
           </div>
         </div>
